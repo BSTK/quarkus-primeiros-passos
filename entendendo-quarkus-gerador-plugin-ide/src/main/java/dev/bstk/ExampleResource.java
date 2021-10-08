@@ -1,0 +1,46 @@
+package dev.bstk;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
+
+@Path("/hello")
+public class ExampleResource {
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        return "Hello RESTEasy";
+    }
+
+    @GET
+    @Path("/tecnologiasTextPlain")
+    @Produces(MediaType.TEXT_PLAIN)
+    public List<String> tecnologiasTextPlain() {
+        return List.of("Java", ".NET", "NodeJs", "AWS", "Azure");
+    }
+
+    @GET
+    @Path("/tecnologiasJson")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> tecnologiasJson() {
+        return List.of("Java", ".NET", "NodeJs", "AWS", "Azure");
+    }
+
+    @GET
+    @Path("/tecnologiasXml")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Tecnologia> tecnologiasXml() {
+        List<Tecnologia> tecnologias = new ArrayList<>();
+        tecnologias.add(new Tecnologia("Java"));
+        tecnologias.add(new Tecnologia(".NET"));
+        tecnologias.add(new Tecnologia("NodeJs"));
+        tecnologias.add(new Tecnologia("AWS"));
+        tecnologias.add(new Tecnologia("Azure"));
+
+        return tecnologias;
+    }
+}
